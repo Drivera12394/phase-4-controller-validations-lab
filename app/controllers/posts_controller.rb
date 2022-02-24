@@ -12,6 +12,9 @@ class PostsController < ApplicationController
     post.update(post_params)
 
     render json: post
+  rescue ActiveRecord::RecordInvalid => 
+    render json: { errors: invalid.record.errors }, status: :unprocessable_entity
+  end
   end
 
   private
